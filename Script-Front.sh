@@ -8,12 +8,12 @@ sudo wget https://raw.githubusercontent.com/Vladimir-Otus/project/refs/heads/mai
 if [ -f /tmp/nginx-sites-available ]; then
     echo "Файл успешно скачан."
 
-    # Копировать файл в /etc/nginx/sites-available/default1
-    sudo cp /tmp/nginx-sites-available /etc/nginx/sites-available/default1
+    # Копировать файл в /etc/nginx/sites-available/default
+    sudo cp -f /tmp/nginx-sites-available /etc/nginx/sites-available/default
 
     # Проверить, скопировался ли файл
-    if [ -f /etc/nginx/sites-available/default1 ]; then
-        echo "Файл успешно скопирован в /etc/nginx/sites-available/default1."
+    if [ -f /etc/nginx/sites-available/default ]; then
+        echo "Файл успешно скопирован в /etc/nginx/sites-available/default."
     else
         echo "Ошибка: файл не скопирован. Проверьте права доступа или путь."
         exit 1
