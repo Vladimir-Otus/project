@@ -1,12 +1,14 @@
-# Скачивание файла .deb
+# Скачивание файла .deb (если он отсутствует)
 DEB_FILE="/home/vt/filebeat_8.9.1_amd64-224190-bc3f59.deb"
 if [ ! -f "$DEB_FILE" ]; then
-    echo "Скачивание filebeat_8.9.1_amd64-224190-bc3f59.deb..."
+    echo "Файл $DEB_FILE не найден. Скачивание..."
     sudo wget https://artifacts.elastic.co/downloads/beats/filebeat/filebeat_8.9.1_amd64-224190-bc3f59.deb -O "$DEB_FILE"
     if [ $? -ne 0 ]; then
         echo "Ошибка: не удалось скачать filebeat_8.9.1_amd64-224190-bc3f59.deb."
         exit 1
     fi
+else
+    echo "Файл $DEB_FILE уже существует. Скачивание не требуется."
 fi
 
 # Установка Filebeat из .deb пакета
@@ -55,4 +57,4 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-echo "Filebeat успешно установлен и настроен.
+echo "Filebeat успешно установлен и настроен."
