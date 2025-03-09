@@ -55,4 +55,4 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-echo "Filebeat успешно установлен и настроен."
+echo "Filebeat успешно установлен и настроен.
