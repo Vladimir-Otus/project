@@ -19,7 +19,7 @@ fi
 echo "Filebeat успешно установлен."
 
 # Скачать конфигурацию для Filebeat Front
-wget https://raw.githubusercontent.com/Vladimir-Otus/project/refs/heads/main/filebeat-Front.yml -O /tmp/filebeat-Front.yml
+sudo wget https://raw.githubusercontent.com/Vladimir-Otus/project/refs/heads/main/filebeat-Front.yml -O /tmp/filebeat-Front.yml
 if [ $? -ne 0 ]; then
     echo "Ошибка: не удалось скачать конфигурацию."
     exit 1
