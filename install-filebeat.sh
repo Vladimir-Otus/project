@@ -1,11 +1,6 @@
-# Проверка наличия файла .deb
-if [ ! -f /home/vt/filebeat-8.9.1-amd64.deb ]; then
-    echo "Ошибка: файл /home/vt/filebeat-8.9.1-amd64.deb не найден."
-    exit 1
-fi
-
 # Установка Filebeat из .deb пакета
-sudo dpkg -i /home/vt/filebeat-8.9.1-amd64.deb
+echo "Установка Filebeat..."
+sudo dpkg -i "$DEB_FILE"
 if [ $? -ne 0 ]; then
     echo "Ошибка: не удалось установить Filebeat."
     echo "Попытка установить зависимости..."
@@ -16,32 +11,28 @@ if [ $? -ne 0 ]; then
     fi
 fi
 
-echo "Filebeat успешно установлен."
-
-# Скачать конфигурацию для Filebeat Front
-sudo wget https://raw.githubusercontent.com/Vladimir-Otus/project/refs/heads/main/filebeat-Front.yml -O /tmp/filebeat-Front.yml
+# Скачивание конфигурации Filebeat
+CONFIG_FILE="/home/vt/filebeat-Front.yml"
+echo "Скачивание конфигурации Filebeat..."
+wget https://raw.githubusercontent.com/Vladimir-Otus/project/refs/heads/main/filebeat-Front.yml -O "$CONFIG_FILE"
 if [ $? -ne 0 ]; then
     echo "Ошибка: не удалось скачать конфигурацию."
     exit 1
 fi
 
-# Заменить конфигурацию Filebeat
-sudo cp -f /tmp/filebeat-Front.yml /etc/filebeat/filebeat.yml
+# Копирование конфигурации в /etc/filebeat/
+echo "Копирование конфигурации..."
+sudo cp -f "$CONFIG_FILE" /etc/filebeat/filebeat.yml
 if [ $? -ne 0 ]; then
     echo "Ошибка: не удалось скопировать конфигурацию."
     exit 1
 fi
 
-# Перезапустить и включить Filebeat
+# Перезапуск Filebeat
+echo "Перезапуск Filebeat..."
 sudo systemctl restart filebeat
 if [ $? -ne 0 ]; then
     echo "Ошибка: не удалось перезапустить Filebeat."
-    exit 1
-fi
-
-sudo systemctl enable filebeat
-if [ $? -ne 0 ]; then
-    echo "Ошибка: не удалось включить автозапуск Filebeat."
     exit 1
 fi
 
