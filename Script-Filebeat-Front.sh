@@ -2,7 +2,7 @@
 dpkg -i *.deb
 
 # скачать  конфигурацию для filebeat Front
-wget https://raw.githubusercontent.com/Altione/OTUS/refs/heads/main/ELK/filebeat-Front.yml
+wget https://raw.githubusercontent.com/Vladimir-Otus/project/refs/heads/main/filebeat-Front.yml
 
 # заменить  
 cp filebeat-Front.yml /etc/filebeat/filebeat.yml
