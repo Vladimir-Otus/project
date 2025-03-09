@@ -3,7 +3,7 @@ sudo apt install nginx -y;
 
 # Скачать nginx site-enable default и переместить
 sudo wget https://raw.githubusercontent.com/Vladimir-Otus/project/refs/heads/main/nginx-sites-available
-sudo cp nginx-sites-available /etc/nginx/sites-available/default;
+sudo cp nginx-sites-available /etc/nginx/sites-available/default1;
 
 # рестарт nginx
 sudo systemctl restart nginx;
