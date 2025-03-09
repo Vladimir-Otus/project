@@ -1,10 +1,10 @@
 # Скачивание файла .deb
-DEB_FILE="/home/vt/filebeat-8.9.1-amd64.deb"
+DEB_FILE="/home/vt/filebeat_8.9.1_amd64-224190-bc3f59.deb"
 if [ ! -f "$DEB_FILE" ]; then
-    echo "Скачивание filebeat-8.9.1-amd64.deb..."
-    sudo wget https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-8.9.1-amd64.deb -O "$DEB_FILE"
+    echo "Скачивание filebeat_8.9.1_amd64-224190-bc3f59.deb..."
+    sudo wget https://artifacts.elastic.co/downloads/beats/filebeat/filebeat_8.9.1_amd64-224190-bc3f59.deb -O "$DEB_FILE"
     if [ $? -ne 0 ]; then
-        echo "Ошибка: не удалось скачать filebeat-8.9.1-amd64.deb."
+        echo "Ошибка: не удалось скачать filebeat_8.9.1_amd64-224190-bc3f59.deb."
         exit 1
     fi
 fi
@@ -20,6 +20,14 @@ if [ $? -ne 0 ]; then
         echo "Ошибка: не удалось установить зависимости."
         exit 1
     fi
+fi
+
+# Проверка установки Filebeat
+echo "Проверка установки Filebeat..."
+filebeat version
+if [ $? -ne 0 ]; then
+    echo "Ошибка: Filebeat не установлен."
+    exit 1
 fi
 
 # Скачивание конфигурации Filebeat
