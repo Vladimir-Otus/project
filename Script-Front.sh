@@ -1,12 +1,30 @@
 # Установка Nginx
 sudo apt install nginx -y;
 
-# Скачать nginx site-enable default и переместить
-sudo wget https://raw.githubusercontent.com/Vladimir-Otus/project/refs/heads/main/nginx-sites-available
-sudo cp nginx-sites-available /etc/nginx/sites-available/default1;
+# Скачать nginx site-enable default
+sudo wget https://raw.githubusercontent.com/Vladimir-Otus/project/refs/heads/main/nginx-sites-available -O /tmp/nginx-sites-available
 
-# рестарт nginx
+# Проверить, скачался ли файл
+if [ -f /tmp/nginx-sites-available ]; then
+    echo "Файл успешно скачан."
+
+    # Копировать файл в /etc/nginx/sites-available/default1
+    sudo cp /tmp/nginx-sites-available /etc/nginx/sites-available/default1
+
+    # Проверить, скопировался ли файл
+    if [ -f /etc/nginx/sites-available/default1 ]; then
+        echo "Файл успешно скопирован в /etc/nginx/sites-available/default1."
+    else
+        echo "Ошибка: файл не скопирован. Проверьте права доступа или путь."
+        exit 1
+    fi
+else
+    echo "Ошибка: файл не скачан. Проверьте URL или подключение к интернету."
+    exit 1
+fi
+
+# Перезапуск Nginx
 sudo systemctl restart nginx;
 
-# установка Промитея
+# Установка Prometheus
 sudo apt install prometheus -y;
