@@ -1,3 +1,14 @@
+# Скачивание файла .deb
+DEB_FILE="/home/vt/filebeat-8.9.1-amd64.deb"
+if [ ! -f "$DEB_FILE" ]; then
+    echo "Скачивание filebeat-8.9.1-amd64.deb..."
+    sudo wget https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-8.9.1-amd64.deb -O "$DEB_FILE"
+    if [ $? -ne 0 ]; then
+        echo "Ошибка: не удалось скачать filebeat-8.9.1-amd64.deb."
+        exit 1
+    fi
+fi
+
 # Установка Filebeat из .deb пакета
 echo "Установка Filebeat..."
 sudo dpkg -i "$DEB_FILE"
