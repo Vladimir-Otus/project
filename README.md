@@ -6,3 +6,8 @@
 3	Back2	192.168.8.104	Apache2 + MySQL (Replica)
 4	Monitor	192.168.8.105	ELK + Grafana
 ![image](https://github.com/user-attachments/assets/8b20feec-3398-4cf0-869c-eed5deb305dc)
+IP	Назначение	Установленные пакеты
+192.168.8.102	Front	NGINX
+192.168.8.103	Back1	Apache2 + MySQL (Master)
+192.168.8.104	Back2	Apache2 + MySQL (Replica)
+192.168.8.105	Monitor	ELK + Grafana
