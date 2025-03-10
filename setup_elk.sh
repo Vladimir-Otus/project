@@ -16,19 +16,39 @@ sudo apt-get install -f -y  # Установка недостающих зави
 sudo mkdir -p /etc/elasticsearch/jvm.options.d
 echo -e "-Xms1g\n-Xmx1g" | sudo tee /etc/elasticsearch/jvm.options.d/jvm.options > /dev/null
 
-# скачиваем конфиги
-sudo wget https://raw.githubusercontent.com/Vladimir-Otus/project/refs/heads/main/elasticsearch.yml
-sudo wget https://raw.githubusercontent.com/Vladimir-Otus/project/refs/heads/main/filebeat.yml
-sudo wget https://raw.githubusercontent.com/Vladimir-Otus/project/refs/heads/main/kibana.yml
-sudo wget https://raw.githubusercontent.com/Vladimir-Otus/project/refs/heads/main/logstash.yml
-sudo wget https://raw.githubusercontent.com/Vladimir-Otus/project/refs/heads/main/logstash-nginx.conf
+# скачиваем конфиги, если их нет
+if [ ! -f elasticsearch.yml ]; then
+    sudo wget https://raw.githubusercontent.com/Vladimir-Otus/project/refs/heads/main/elasticsearch.yml
+fi
+if [ ! -f filebeat.yml ]; then
+    sudo wget https://raw.githubusercontent.com/Vladimir-Otus/project/refs/heads/main/filebeat.yml
+fi
+if [ ! -f kibana.yml ]; then
+    sudo wget https://raw.githubusercontent.com/Vladimir-Otus/project/refs/heads/main/kibana.yml
+fi
+if [ ! -f logstash.yml ]; then
+    sudo wget https://raw.githubusercontent.com/Vladimir-Otus/project/refs/heads/main/logstash.yml
+fi
+if [ ! -f logstash-nginx.conf ]; then
+    sudo wget https://raw.githubusercontent.com/Vladimir-Otus/project/refs/heads/main/logstash-nginx.conf
+fi
 
-# копируем в нужные папки
-sudo cp elasticsearch.yml /etc/elasticsearch/elasticsearch.yml
-sudo cp filebeat.yml /etc/filebeat/filebeat.yml
-sudo cp kibana.yml /etc/kibana/kibana.yml
-sudo cp logstash.yml /etc/logstash/logstash.yml
-sudo cp logstash-nginx.conf /etc/logstash/conf.d/logstash-nginx.conf
+# копируем в нужные папки, если файлы существуют
+if [ -f elasticsearch.yml ]; then
+    sudo cp elasticsearch.yml /etc/elasticsearch/elasticsearch.yml
+fi
+if [ -f filebeat.yml ]; then
+    sudo cp filebeat.yml /etc/filebeat/filebeat.yml
+fi
+if [ -f kibana.yml ]; then
+    sudo cp kibana.yml /etc/kibana/kibana.yml
+fi
+if [ -f logstash.yml ]; then
+    sudo cp logstash.yml /etc/logstash/logstash.yml
+fi
+if [ -f logstash-nginx.conf ]; then
+    sudo cp logstash-nginx.conf /etc/logstash/conf.d/logstash-nginx.conf
+fi
 
 # рестартуем все возможное
 sudo systemctl daemon-reload
