@@ -28,7 +28,7 @@ sudo cp elasticsearch.yml /etc/elasticsearch/elasticsearch.yml
 sudo cp filebeat.yml /etc/filebeat/filebeat.yml
 sudo cp kibana.yml /etc/kibana/kibana.yml
 sudo cp logstash.yml /etc/logstash/logstash.yml
-sudo cp logstash-nginx-es.conf /etc/logstash/conf.d/logstash-nginx-es.conf
+sudo cp logstash-nginx.conf /etc/logstash/conf.d/logstash-nginx.conf
 
 # рестартуем все возможное
 sudo systemctl daemon-reload
