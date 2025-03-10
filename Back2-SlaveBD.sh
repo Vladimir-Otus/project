@@ -1,13 +1,12 @@
-####################Настройка MYSQL
-###устанавливаем mysql он сам завелся запустился
-apt install mysql-server-8.0 -y;
+# Установка MySQL 8.0
+sudo apt update
+sudo apt install mysql-server-8.0 -y
 
-### Качаем mysqld и меняем на наш конфиг мастера
-wget https://raw.githubusercontent.com/Altione/OTUS/refs/heads/main/Slave-mysqld.cnf;
-cp Slave-mysqld.cnf /etc/mysql/mysql.conf.d/mysqld.cnf;
+# Загрузка и замена конфигурационного файла
+sudo wget https://raw.githubusercontent.com/Vladimir-Otus/project/refs/heads/main/Slave-mysql.cnf -O /etc/mysql/mysql.conf.d/mysqld.cnf
 
-### рестартуем mysql
-service mysql restart;
+# Перезапуск MySQL
+sudo service mysql restart
 
 ### на всякий случай останавливаем текущую репликацию
 mysql -u root -e "STOP REPLICA;"
