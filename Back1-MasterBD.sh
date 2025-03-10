@@ -3,7 +3,7 @@ sudo apt update
 sudo apt install mysql-server-8.0 -y
 
 # Загрузка и замена конфигурационного файла
-sudo wget https://raw.githubusercontent.com/Vladimir-Otus/project/refs/heads/main/Slave-mysql.cnf -O /etc/mysql/mysql.conf.d/mysqld.cnf
+sudo wget https://raw.githubusercontent.com/Vladimir-Otus/project/refs/heads/main/Master-mysql.cnf -O /etc/mysql/mysql.conf.d/mysqld.cnf
 
 # Перезапуск MySQL
 sudo service mysql restart
