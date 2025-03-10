@@ -1,6 +1,6 @@
 # Установка MySQL 8.0
 sudo apt update
-sudo apt install mysql-server-8.0 -y
+sudo apt install mysql-server -y
 
 # Загрузка и замена конфигурационного файла
 sudo wget https://raw.githubusercontent.com/Vladimir-Otus/project/refs/heads/main/Master-mysql.cnf -O /etc/mysql/mysql.conf.d/mysqld.cnf
@@ -15,4 +15,4 @@ mysql -u root -e "CREATE USER repl@'%' IDENTIFIED WITH 'caching_sha2_password' B
 mysql -u root -e "GRANT REPLICATION SLAVE ON *.* TO repl@'%';"
 
 # Проверка логов на наличие ошибок
-sudo tail -n 50 /var/log/mysql/error.log
+sudo tail -n 50 /var/log/mysql/error.log | grep -i error
