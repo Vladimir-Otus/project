@@ -1,8 +1,5 @@
 # Установка Apache2
-sudo apt install apache2 -y;
+apt install apache2 -y
 
-# Изменение дефолтной страницы (замена текста в body)
-sudo sed -i 's/Apache2 Default Page/Back1/' /var/www/html/index.html;
-
-# Изменение заголовка (title)
-sudo sed -i 's/Apache2 - Back1</' /var/www/html/index.html;
+# Заменить "Apache2 Default Page" на "Apache2 - Back1" в файле index.html
+sed -i 's/Apache2 Default Page/Apache2 - Back1/' /var/www/html/index.html
