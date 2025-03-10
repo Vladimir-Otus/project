@@ -3,11 +3,6 @@
 
 USER="root"
 OUTPUT_DIR="/home/vt/DB/DB"
-LOG_FILE="$OUTPUT_DIR/backup.log"
-
-# Логирование
-exec >> "$LOG_FILE" 2>&1
-echo "Начало бэкапа: $(date)"
 
 # Проверка подключения к MySQL
 if ! mysql -u"$USER" -e "SHOW DATABASES;" > /dev/null; then
@@ -46,4 +41,3 @@ for db in $databases; do
 done
 
 echo "Бэкап готов!"
-echo "Завершение бэкапа: $(date)"
